@@ -1,15 +1,26 @@
 import React from "react";
-import Constants from "expo-constants";
-import { Text, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import RepositoryList from "./RepositoryList";
+import { UpBar } from "./UpBar";
+import { Route, Routes, Redirect } from "react-router-native";
 
-const Main = () => {
+export const Main = () => {
   return (
-    <View style={{ marginTop: Constants.statusBarHeight, flex: 1 }}>
-      <Text>Rate repository</Text>
-      <RepositoryList />
+    <View style={{ flex: 1 }}>
+      <UpBar />
+      <Routes>
+        <Route exact path='/' element={<RepositoryList />} />
+        <Route exact path='/signin' element={<SignIn />} />
+        <Route exact path='/*' element={<RepositoryList />} />
+      </Routes>
     </View>
   );
 };
 
-export default Main;
+const SignIn = () => {
+  return (
+    <View>
+      <Text>Working on it</Text>
+    </View>
+  );
+};
